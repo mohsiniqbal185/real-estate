@@ -11,14 +11,9 @@ class Home extends Component {
         return (
             
             <div>
-<<<<<<< HEAD
 {/*               
                <Header /> 
               <Footer /> */}
-=======
-               <Header /> 
-              <Footer />
->>>>>>> f5e4fa0ab43fc4175e68d2ccecebf218156dc620
             </div>
         )
     }

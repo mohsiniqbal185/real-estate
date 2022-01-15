@@ -10,7 +10,8 @@ import home from './Components/home';
 import Search from './Components/search';
 
 import Footer from './Components/footer';
-import SignIn from './Components/signin'
+import SignIn from './Components/signin';
+import Header from './Components/header';
  
 
 function App() {
@@ -25,11 +26,10 @@ function App() {
         
 
 
-<<<<<<< HEAD
-=======
+
           {/* <Route path="/" component={home} /> */}
           
->>>>>>> f5e4fa0ab43fc4175e68d2ccecebf218156dc620
+
           {/* <Route exact path="/" component={Header} /> */}
           
           <Route exact path="/" component={SignIn} />
