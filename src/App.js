@@ -9,6 +9,7 @@ import home from './Components/home';
 import Search from './Components/search';
 import Header from './Components/header';
 import Footer from './Components/footer';
+import SignIn from './Components/signin'
  
 
 function App() {
@@ -22,8 +23,11 @@ function App() {
         <Switch>
 
           {/* <Route exact path="/" component={Header} /> */}
+          
+          <Route exact path="/" component={SignIn} />
 
-          <Route path="/search" component={Search} />
+          {/* <Route path="/search" component={Search} /> */}
+
 
         </Switch>
         <Footer/>
