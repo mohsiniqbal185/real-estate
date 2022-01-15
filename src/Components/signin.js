@@ -5,9 +5,11 @@ const SignIn = () => {
         <div className='container_SignIn'>
         <form/>
             <h2 className="Heading"><strong>Welcome to Log In</strong></h2>
-        <li>Email:<input type="email" placeholder="Enter your email" required/></li>
+            <br/><br />
+
+        <center><li><input type="email" placeholder="Enter your email" required/></li></center>
         <br/><br />
-        <li>Password:<input type="password" placeholder="Enter your password" required/></li>
+        <center><li><input type="password" placeholder="Enter your password" required/></li></center>
         <br/><br/>
         <center><button className='logIn' type='submit'>Sign In</button></center>
         

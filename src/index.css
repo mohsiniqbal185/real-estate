@@ -13,8 +13,8 @@ code {
 }
 
 /* <<<<<<< HEAD */
-.search {
-  margin: 200px auto;
+.gap {
+  margin: 400px auto;
 }
 /* ======= */
 h2.Heading {
@@ -50,8 +50,8 @@ button:hover {
 
 div.container_SignIn {
   margin: auto;
-  width: 20%;
-  margin-top: 20px;
+  width: 30%;
+  margin-top: 200px;
   margin-bottom: 20px;
   border: 2px solid black;
   border-radius: 15px;

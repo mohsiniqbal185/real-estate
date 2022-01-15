@@ -8,8 +8,9 @@ import AddProperty from './Components/addProperty';
 import newSearch from './Components/newSearch';
 import home from './Components/home';
 import Search from './Components/search';
-import Header from './Components/header';
+
 import Footer from './Components/footer';
+import SignIn from './Components/signin'
  
 
 function App() {
@@ -21,12 +22,23 @@ function App() {
       <Router>
         <Header/>
         <Switch>
-        <newSearch/>
-        <AddProperty/>
+        
 
+
+<<<<<<< HEAD
+=======
+          {/* <Route path="/" component={home} /> */}
+          
+>>>>>>> f5e4fa0ab43fc4175e68d2ccecebf218156dc620
           {/* <Route exact path="/" component={Header} /> */}
+          
+          <Route exact path="/" component={SignIn} />
+
+          {/* <Route path="/search" component={Search} /> */}
+
 
           <Route path="/search" component={Search} />
+
 
         </Switch>
         <Footer/>
