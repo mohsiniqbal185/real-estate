@@ -13,6 +13,7 @@ class Home extends Component {
             <div>
               
                <Header /> 
+<<<<<<< HEAD
                <AddProperty/>
       <div>
         <div className="intro intro-carousel swiper position-relative">
@@ -357,6 +358,9 @@ class Home extends Component {
         </main>
       </div>
             <Footer />
+=======
+              <Footer />
+>>>>>>> eb790662f80c763340724064ecc2edcbc3efd755
             </div>
         )
     }

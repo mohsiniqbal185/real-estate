@@ -9,7 +9,11 @@ class Search extends Component {
     render() {
 
         return (
+<<<<<<< HEAD
           <div>
+=======
+          <div className='search'>
+>>>>>>> eb790662f80c763340724064ecc2edcbc3efd755
           {/* <Header></Header> */}
           <section class="home" id="home"></section>
           <form action>
@@ -88,7 +92,7 @@ class Search extends Component {
         </div>
         <input type="submit" defaultValue="search property" className="btn" />
       </form>
-          <Footer></Footer>
+          {/* <Footer></Footer> */}
         </div>
     );
 };

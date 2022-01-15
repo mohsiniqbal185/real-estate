@@ -10,6 +10,8 @@ import Header from './Components/header';
 
 import home from './Components/home';
 import Search from './Components/search';
+import Header from './Components/header';
+import Footer from './Components/footer';
  
 
 function App() {
@@ -24,12 +26,18 @@ function App() {
         <newSearch/>
         <AddProperty/>
 
+<<<<<<< HEAD
           {/* <Route path="/" component={home} /> */}
           <Route path="/" component={AddProperty} />
           <Route path="/" component={newSearch} />
+=======
+          {/* <Route exact path="/" component={Header} /> */}
+
+>>>>>>> eb790662f80c763340724064ecc2edcbc3efd755
           <Route path="/search" component={Search} />
 
         </Switch>
+        <Footer/>
 
       </Router>
 
