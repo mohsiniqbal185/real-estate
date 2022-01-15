@@ -24,13 +24,11 @@ function App() {
       <Router>
         <Header/>
         <Switch>
-        <newSearch/>
-        <AddProperty/>
+        
 
 
           {/* <Route path="/" component={home} /> */}
-          <Route path="/" component={AddProperty} />
-          <Route path="/" component={newSearch} />
+          
           {/* <Route exact path="/" component={Header} /> */}
           
           <Route exact path="/" component={SignIn} />
