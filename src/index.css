@@ -1,13 +1,65 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+h2.Heading {
+  text-align: center;
+  text-decoration: underline;
+}
+
+input {
+  align-items: center;
+  height: 35px;
+  width: 250px;
+  border-radius: 15px;
+  border: 3px solid black;
+}
+
+button.logIn {
+  display: inline;
+  background-color: black;
+  font-size: 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  color: white;
+  padding: 7px 13px;
+}
+
+input:focus {
+  background-color: white;
+}
+
+button:hover {
+  text-decoration: underline;
+}
+
+div.container_SignIn {
+  margin: auto;
+  width: 20%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 2px solid black;
+  border-radius: 15px;
+  padding-inline: 15px;
+  background-color: white;
+}
+
+div.container_SignUp {
+  margin: auto;
+  width: 20%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 2px solid black;
+  border-radius: 15px;
+  padding-inline: 15px;
 }
