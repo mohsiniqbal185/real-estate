@@ -7,6 +7,8 @@ import './App.css';
 
 import home from './Components/home';
 import Search from './Components/search';
+import Header from './Components/header';
+import Footer from './Components/footer';
  
 
 function App() {
@@ -16,13 +18,15 @@ function App() {
     <div className="wrapper">
 
       <Router>
-
+        <Header/>
         <Switch>
 
-          <Route exact path="/" component={home} />
-          <Route exact path="/search" component={Search} />
+          {/* <Route exact path="/" component={Header} /> */}
+
+          <Route path="/search" component={Search} />
 
         </Switch>
+        <Footer/>
 
       </Router>
 

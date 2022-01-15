@@ -9,8 +9,8 @@ class Search extends Component {
     render() {
 
         return (
-          <div>
-          <Header></Header>
+          <div className='search'>
+          {/* <Header></Header> */}
           <section class="home" id="home"></section>
           <form action>
         <h3>find your perfect home</h3>
@@ -88,7 +88,7 @@ class Search extends Component {
         </div>
         <input type="submit" defaultValue="search property" className="btn" />
       </form>
-          <Footer></Footer>
+          {/* <Footer></Footer> */}
         </div>
     );
 };
