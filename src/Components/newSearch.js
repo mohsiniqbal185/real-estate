@@ -1,18 +1,9 @@
-import React, { Component, Fragment } from 'react';
-import { AgGridColumn, AgGridReact } from 'ag-grid-react';
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-balham.css';
-import Footer from './footer';
-import Header from './header';
-class Search extends Component {
+import React from 'react'
 
-    render() {
-
-        return (
-          <div>
-          {/* <Header></Header> */}
-          <section class="home" id="home"></section>
-          <form action>
+function newSearch() {
+    return (
+        <div>
+            <form action>
         <h3>find your perfect home</h3>
         <div className="buttons-container">
           <a href="#" className="btn">for rent</a>
@@ -88,16 +79,8 @@ class Search extends Component {
         </div>
         <input type="submit" defaultValue="search property" className="btn" />
       </form>
-          <Footer></Footer>
         </div>
-    );
-};
-
-
-        
-
-    
-
+    )
 }
 
-export default Search;
+export default newSearch

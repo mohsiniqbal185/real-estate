@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Header from "./header";
-
+import AddProperty from './addProperty';
 import Footer from "./footer"; 
 
 class Home extends Component {
@@ -11,7 +11,9 @@ class Home extends Component {
         return (
             
             <div>
+              
                <Header /> 
+               <AddProperty/>
       <div>
         <div className="intro intro-carousel swiper position-relative">
           <div className="swiper-wrapper">
