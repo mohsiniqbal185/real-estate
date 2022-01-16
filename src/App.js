@@ -4,15 +4,14 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
  
 
 import './App.css';
-import AddProperty from './Components/addProperty';
-import newSearch from './Components/newSearch';
-import Header from './Components/header';
-
-import home from './Components/home';
-import Search from './Components/search';
-
-import Footer from './Components/footer';
-import SignIn from './Components/signin'
+import AddProperty from './addProperty';
+import newSearch from './newSearch';
+import Header from './header';
+import home from './home';
+import Search from './search';
+import PropertyView from './PropertyView';
+import Footer from './footer';
+import SignIn from './signin'
  
 
 function App() {
@@ -31,7 +30,8 @@ function App() {
           
           {/* <Route exact path="/" component={Header} /> */}
           
-          <Route exact path="/" component={SignIn} />
+          {/*<Route exact path="/" component={SignIn} />*/}
+          <PropertyView/>
 
           {/* <Route path="/search" component={Search} /> */}
 
