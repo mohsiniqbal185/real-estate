@@ -23,23 +23,14 @@ function App() {
       <Router>
         <Header/>
         <Switch>
-        
-
-
-
+      
           {/* <Route path="/" component={home} /> */}
-          
-
           {/* <Route exact path="/" component={Header} /> */}
           
           <Route exact path="/" component={SignIn} />
 
           {/* <Route path="/search" component={Search} /> */}
-
-
           <Route path="/search" component={Search} />
-
-
         </Switch>
         <Footer/>
 
