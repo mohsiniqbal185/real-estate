@@ -5,7 +5,11 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import './App.css';
 
+
 import home from './Components/home';
+
+
+
 import Search from './Components/search';
 
 import Footer from './Components/footer';
