@@ -4,6 +4,7 @@ import image3 from './images/img-3.jpg'
 import image4 from './images/img-4.jpg'
 import image5 from './images/img-5.jpg'
 import image6 from './images/img-6.jpg'
+import './PropertyView.css';
 
 const PropertyView = () => {
     return (  
