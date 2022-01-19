@@ -1,7 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { AgGridColumn, AgGridReact } from 'ag-grid-react';
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+
 import Footer from './footer';
 import Header from './header';
 class Search extends Component {
@@ -9,11 +7,11 @@ class Search extends Component {
     render() {
 
         return (
-          <div className='search'>
-          {/* <Header></Header> */}
-          <section class="home" id="home"></section>
+        
+            
+          <section className="home1" id="home1">
           <form action>
-        <h3>find your perfect home</h3>
+        <h3>Find your perfect home</h3>
         <div className="buttons-container">
           <a href="#" className="btn">for rent</a>
           <a href="#" className="btn">for sell</a>
@@ -88,8 +86,9 @@ class Search extends Component {
         </div>
         <input type="submit" defaultValue="search property" className="btn" />
       </form>
-          {/* <Footer></Footer> */}
-        </div>
+      </section>
+
+
     );
 };
 

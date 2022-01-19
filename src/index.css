@@ -14,7 +14,7 @@ code {
 
 /* <<<<<<< HEAD */
 .gap {
-  margin: 400px auto;
+  margin: 100px auto;
 }
 /* ======= */
 h2.Heading {
@@ -61,11 +61,13 @@ div.container_SignIn {
 
 div.container_SignUp {
   margin: auto;
-  width: 20%;
-  margin-top: 20px;
+  width: 30%;
+  margin-top: 300px;
   margin-bottom: 20px;
   border: 2px solid black;
   border-radius: 15px;
   padding-inline: 15px;
+  background-color: white;
 }
-/* >>>>>>> 6161686f7624a19bf38008f63e1774d32c455be8 */
+
+
