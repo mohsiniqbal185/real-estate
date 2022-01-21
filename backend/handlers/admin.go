@@ -3,11 +3,12 @@ package handlers
 import (
 	"backend/database"
 	"database/sql"
-	"github.com/gin-gonic/contrib/sessions"
-	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
 	"strings"
+
+	"github.com/gin-gonic/contrib/sessions"
+	"github.com/gin-gonic/gin"
 )
 
 func AdminProfile(c *gin.Context) {

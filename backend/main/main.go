@@ -29,6 +29,7 @@ func main() {
 func engine() *gin.Engine {
 
 	r := gin.New()
+	r.Use(CORSMiddleware())
 	r.Use(sessions.Sessions("mysession", sessions.NewCookieStore([]byte("arandomsecretforsessioncookiesencryption"))))
 	r.POST("/login", handlers.Login)
 	r.POST("/signup", handlers.Signup)
@@ -36,7 +37,6 @@ func engine() *gin.Engine {
 
 	r.POST("/adminLogin", handlers.AdminLogin)
 	r.POST("/adminLogout", handlers.AdminLogout)
-
 	user := r.Group("/user")
 	user.Use(AuthRequired)
 	{
@@ -90,4 +90,20 @@ func AdminAuthRequired(c *gin.Context) {
 
 func status(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"status": "You are logged in"})
+}
+
+func CORSMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
+		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS, GET, PUT")
+
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(200)
+			return
+		}
+
+		c.Next()
+	}
 }
