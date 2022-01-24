@@ -4,10 +4,10 @@ const AddProperty = () => {
     return (          
         <div className="AddProperty">
             <div className="head">
-            <h2>Add Property </h2>
-            </div>
+                <br></br>
+            <h2 className="Heading"><strong>Add Property</strong></h2>            </div>
             <form name="add_prop" class="add_prop_form">
-                <table>
+                <table >
                     <tr>
                     <td><label for="purpose">Purpose :</label></td>
                     <td>Rent : <input type="radio" name="purpose" value="rent"/>

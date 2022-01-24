@@ -5,17 +5,18 @@ const SignUp = () => {
 <div className='container_SignUp'>
         <form/>
             <h2 className="Heading"><strong>Welcome to Sign Up</strong></h2>
-            <li><input type="text" placeholder="Enter your first name" required/></li>
+            <br />
+            <li><input type="text" placeholder=" First name" required/></li>
             <br /><br />
-            <li>Last Name:<input type="text" placeholder="Enter your last name" required/></li>   
+            <li><input type="text" placeholder=" Last name" required/></li>   
             <br /><br />
-        <li>Email:<input type="email" placeholder="Enter your email" required/></li>
-        <br/><br />
-        <li>Password:<input type="password" placeholder="Enter your password" required/></li>
-        <br/><br/>
-        <li>Contact No:<input type="number" placeholder="Enter your contact number" required/></li>
+        <li><input type="email" placeholder=" Email" required/></li>
         <br /><br />
-        <center><button className='logIn' type='submit'>Sign Up</button></center>
+        <li><input type="password" placeholder=" Password" required/></li>
+        <br /><br />
+        <li><input type="number" placeholder=" Contact " required/></li>
+        <br /><br />
+        <center><button className='logIn' type='Submit'>Sign Up</button></center>
         
         <h4>Already a member? <a href="">Sign In</a></h4>
         

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import Header from "./header";
+import Head from "./head";
 
-import Footer from "./footer"; 
+import Foot from "./foot"; 
 
 class Home extends Component {
 
@@ -11,9 +11,8 @@ class Home extends Component {
         return (
             
             <div>
-{/*               
-               <Header /> 
-              <Footer /> */}
+               <Head /> 
+              <Foot />
             </div>
         )
     }
