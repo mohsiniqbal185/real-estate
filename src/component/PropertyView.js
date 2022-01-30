@@ -1,4 +1,4 @@
-import '../component/PropertyView.css';
+import '../index.css';
 import Data from './Data';
 import View from './View';
 
