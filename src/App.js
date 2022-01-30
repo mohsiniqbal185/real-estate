@@ -1,8 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
- 
-
 import './App.css';
 import AddProperty from '../src/component/addProperty';
 import newSearch from '../src/component/newSearch';
