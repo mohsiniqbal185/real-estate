@@ -21,27 +21,30 @@ code {
 h2.Heading {
   text-align: center;
   text-decoration: underline;
-  font-size: 50px;
+  font-size: 30px;
   margin-bottom: 100px;
 }
 
 input {
   align-items: center;
-  height: 60px;
-  width: 600px;
+  height: 50px;
+  width: 300px;
   border-radius: 30px;
   border: 3px solid black;
-  font-size: 30px;
+  font-size: 20px;
+  margin-bottom: 20px;
 }
 
 button.logIn {
   display: inline;
   background-color: black;
-  font-size: 30px;
+  margin-bottom: 20px;
+  font-size: 20px;
   border-radius: 15px;
   cursor: pointer;
   color: white;
   padding: 7px 13px;
+  margin-top:50px;
 }
 
 input:focus {
@@ -53,11 +56,11 @@ button:hover {
 }
 
 div.container_SignIn {
-  height: 800px;
+  height: 500px;
   margin: auto;
   width: 30%;
-  margin-top: 70px;
-  margin-bottom: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   border: 2px solid black;
   border-radius: 15px;
   padding-inline: 15px;
@@ -68,9 +71,9 @@ div.container_SignIn {
 div.container_SignUp {
   margin: auto;
   width: 30%;
-  height: 800px;
-  margin-top: 70px;
-  margin-bottom: 50px;
+  height: 560px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   border: 2px solid black;
   border-radius: 15px;
   padding-inline: 40px;
@@ -163,7 +166,7 @@ nav {
 
 nav li a.navbar-brand {
   margin-inline-start: 5%;
-  font-size: 50px;
+  font-size: 30px;
   color: black;
 }
 
@@ -282,7 +285,8 @@ section{
     text-align: center;
     color:#333;
     font-size: 4rem;
-    padding-bottom: 3rem;
+    margin-bottom: 2px;
+    /* padding-bottom: 2rem; */
 }
 
 .heading span{
@@ -428,4 +432,12 @@ section{
 .featured .box-container .box .content .buttons .btn{
     flex:1;
     font-size: 1.5rem;
+}
+
+div.error-message {
+  color: red;
+  padding: 4px;
+  border: 2px solid red;
+  border-radius: 15px;
+  margin: 10px;
 }

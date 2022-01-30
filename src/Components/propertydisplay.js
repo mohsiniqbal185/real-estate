@@ -1,6 +1,5 @@
 import React from "react";
-import ReactPaginate from "react-paginate";
-import bootstrap from 'bootstrap'
+
 // import image1 from '.../assets/img/about-1.jpg'
 // import image2 from '.../assets/img/about-2.jpg'
 // import image3 from '.../assets/img/agent-1.jpg'

@@ -11,8 +11,7 @@ class Home extends Component {
         return (
             
             <div>
-               <Head /> 
-              <Foot />
+               
             </div>
         )
     }

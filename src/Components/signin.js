@@ -18,7 +18,7 @@ const SignIn = () => {
         console.log(response);
         if (response.status === StatusOK) {
             localStorage.setItem('user', JSON.stringify(username));
-            // window.location.href = "/profile";
+            window.location.href = "/home";
             setMessage("");
             console.log("Successfully logged in");
         } else {
@@ -32,20 +32,18 @@ const SignIn = () => {
         <div className='container_SignIn'>
             <form onSubmit={handleSubmit}>
                 <h2 className="Heading"><strong>Welcome to Log In</strong></h2>
-                <br/><br/>
 
                 <center>
-                    <li><input type="email" name="username" placeholder="Enter your email" required
+                    <li><input type="email" name="username" placeholder=" Enter your email" required
                     />
+                    <br/>
                     </li>
                 </center>
-                <br/><br/>
                 <center>
-                    <li><input type="password" name="password" placeholder="Enter your password" required
-                    />
+                    <li><input type="password" name="password" placeholder=" Enter your password" required/>
                     </li>
+                    <br/>
                 </center>
-                <br/><br/>
                 <center>
                     <button className='logIn' type='submit'>Sign In</button>
                 </center>
@@ -58,7 +56,7 @@ const SignIn = () => {
                 </div>
             </center>
 
-            <h4>Don't have an account? <a href="">Sign Up</a></h4>
+            <h4>Don't have an account? <a href="/signup">Sign Up</a></h4>
 
         </div>
     );

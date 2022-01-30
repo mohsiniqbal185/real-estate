@@ -3,16 +3,25 @@ package handlers
 import (
 	"backend/database"
 	"database/sql"
-	"github.com/gin-gonic/contrib/sessions"
-	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
 	"strings"
+
+	"github.com/gin-gonic/contrib/sessions"
+	"github.com/gin-gonic/gin"
 )
 
 type LoginRequest struct {
 	UserName string `form:"username" json:"username" binding:"required"`
 	Password string `form:"password" json:"password" binding:"required"`
+}
+
+type SignupRequest struct {
+	FirstName string `form:"firstname" json:"firstname" binding:"required"`
+	LastName  string `form:"lastname" json:"lastname" binding:"required"`
+	UserName  string `form:"username" json:"username" binding:"required"`
+	Password  string `form:"password" json:"password" binding:"required"`
+	Contact   string `form:"contact" json:"contact" binding:"required"`
 }
 
 func Profile(c *gin.Context) {
@@ -41,7 +50,7 @@ func Login(c *gin.Context) {
 
 	db := database.GetDatabase()
 	validPassword := ""
-	err := db.QueryRow("select password from user where username=?", loginDetails.UserName).Scan(&validPassword)
+	err := db.QueryRow("select password from user where id=?", loginDetails.UserName).Scan(&validPassword)
 	if err != nil && err != sql.ErrNoRows {
 		log.Print("Error in database query", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Database failure"})
@@ -60,8 +69,39 @@ func Login(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "Successfully authenticated user"})
 }
 
-func Signup(context *gin.Context) {
-	// TODO: implement this
+func Signup(c *gin.Context) {
+	signupDetails := SignupRequest{}
+
+	if err := c.BindJSON(&signupDetails); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to parse Json"})
+	}
+
+	// Validate form input
+	if strings.Trim(signupDetails.UserName, " ") == "" || strings.Trim(signupDetails.Password, " ") == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Parameters can't be empty"})
+		return
+	}
+
+	db := database.GetDatabase()
+	existingusername := ""
+	err := db.QueryRow("select id from user where id=? ", signupDetails.UserName).Scan(&existingusername)
+	if err != nil && err != sql.ErrNoRows {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Database Error"})
+		return
+	} else if existingusername != "" {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "User already exists"})
+		return
+	}
+
+	_, err = db.Exec("INSERT INTO USER(id,firstname,lastname,password,contact) VALUES (?,?,?,?,?) ", signupDetails.UserName, signupDetails.FirstName, signupDetails.LastName, signupDetails.Password, signupDetails.Contact)
+
+	if err != nil {
+		log.Print("Error in database query", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Database failure"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Successfully registered user"})
 }
 
 func Logout(c *gin.Context) {
