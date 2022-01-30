@@ -1,10 +1,10 @@
-import image1 from './images/img-1.jpg'
-import image2 from './images/img-2.jpg'
-import image3 from './images/img-3.jpg'
-import image4 from './images/img-4.jpg'
-import image5 from './images/img-5.jpg'
-import image6 from './images/img-6.jpg'
-import './PropertyView.css';
+import image1 from '../images/img-1.jpg'
+import image2 from '../images/img-2.jpg'
+import image3 from '../images/img-3.jpg'
+import image4 from '../images/img-4.jpg'
+import image5 from '../images/img-5.jpg'
+import image6 from '../images/img-6.jpg'
+import '../component/PropertyView.css';
 
 const PropertyView = () => {
     return (  

@@ -4,14 +4,14 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
  
 
 import './App.css';
-import AddProperty from './addProperty';
-import newSearch from './newSearch';
-import Header from './header';
-import home from './home';
-import Search from './search';
-import PropertyView from './PropertyView';
-import Footer from './footer';
-import SignIn from './signin'
+import AddProperty from '../src/component/addProperty';
+import newSearch from '../src/component/newSearch';
+import Header from '../src/component/header';
+import home from '../src/component/home';
+import Search from '../src/component/search';
+import PropertyView from '../src/component/PropertyView';
+import Footer from '../src/component/footer';
+import SignIn from '../src/component/signin'
  
 
 function App() {
