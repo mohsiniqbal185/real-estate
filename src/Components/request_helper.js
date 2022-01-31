@@ -12,7 +12,8 @@ export async function request(method, path, body) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(body)
+        body: JSON.stringify(body),
+        credentials: 'include'
 
     }).then(response => {
         return response;

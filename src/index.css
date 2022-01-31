@@ -21,8 +21,10 @@ code {
 h2.Heading {
   text-align: center;
   text-decoration: underline;
-  font-size: 30px;
-  margin-bottom: 100px;
+  font-size: 40px;
+  margin-bottom: 10px;
+  margin-left: 300px;
+  
 }
 
 input {
@@ -144,14 +146,29 @@ img.imgdetail {
 
 div.AddProperty {
   width: 200px;
-  height: 500px;
-align-content: center;  margin-bottom: 1200px;
-  padding: -30px;
-  font-size: 25px;
+  height: 100px;
+  margin-bottom: 1200px;
+  padding: -100px;
+  font-size: 20px;
+}
+ul li input[type=radio]{
+  position: absolute;
+  visibility: hidden;
+  size: 20px;
 }
 
+tr {
+  height: 10px;
+}
+input[type=radio]:checked ~ .check::before{
+  background: #0DFF92;
+}
+input[type=radio]:checked ~ label{
+  color: #ff0d0d;
+}
 div.head {
   margin-left: 200px;
+  
 }
 
 nav {

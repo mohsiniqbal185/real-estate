@@ -3,10 +3,11 @@ package main
 import (
 	"backend/database"
 	"backend/handlers"
-	"github.com/gin-gonic/contrib/sessions"
-	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
+
+	"github.com/gin-gonic/contrib/sessions"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
@@ -41,6 +42,7 @@ func engine() *gin.Engine {
 	user.Use(AuthRequired)
 	{
 		// Add all the handlers for the authenticated user
+		user.POST("/addproperty", handlers.AddProperty)
 		user.GET("/profile", handlers.Profile)
 		user.GET("/status", status)
 	}
