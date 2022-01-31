@@ -12,10 +12,13 @@ export async function request(method, path, body) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(body),
+        body: body ? JSON.stringify(body) : null,
         credentials: 'include'
 
     }).then(response => {
+        if (response.status === StatusUnauthorized) {
+            localStorage.removeItem('user');
+        }
         return response;
     })
 }

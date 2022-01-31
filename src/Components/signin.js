@@ -4,6 +4,8 @@ import {request, POST, StatusOK} from "./request_helper";
 
 const SignIn = () => {
     const [message, setMessage] = useState("");
+    const params = new URLSearchParams(window.location.search);
+    const redirect = params.get('redirect');
     const handleSubmit = async e => {
         e.preventDefault();
 
@@ -18,7 +20,11 @@ const SignIn = () => {
         console.log(response);
         if (response.status === StatusOK) {
             localStorage.setItem('user', JSON.stringify(username));
-            window.location.href = "/home";
+            if (!redirect) {
+                window.location.href = "/home";
+            } else {
+                window.location.href = redirect;
+            }
             setMessage("");
             console.log("Successfully logged in");
         } else {
@@ -36,7 +42,7 @@ const SignIn = () => {
                 <center>
                     <li><input type="email" name="username" placeholder=" Enter your email" required
                     />
-                    <br/>
+                        <br/>
                     </li>
                 </center>
                 <center>

@@ -1,7 +1,6 @@
-
-import React, { Component, useState } from 'react';
-import { request, POST, StatusOK } from "./request_helper";
-
+import React, {Component, useState} from 'react';
+import {request, POST, StatusOK} from "./request_helper";
+import Authenticated from "./authenticated.js";
 
 const AddProperty = () => {
     const [message, setMessage] = useState("");
@@ -9,18 +8,17 @@ const AddProperty = () => {
         e.preventDefault();
 
         const data = new FormData(e.target);
-        
+
         let purpose = document.querySelector("input[name='purpose']:checked").value
         console.log(purpose);
         let type = document.querySelector("input[name='type']:checked").value
-        let location= data.get("location");
+        let location = data.get("location");
         let prop_title = data.get("prop_title");
         let description = data.get("description");
         let price = data.get("price");
         let area = data.get("area");
         let no_of_bed = document.getElementById('no_of_bed').value;
         let no_of_bath = document.getElementById('no_of_bath').value;
-
 
 
         const response = await request(POST, "/user/addproperty", {
@@ -48,43 +46,44 @@ const AddProperty = () => {
             setMessage(json.error);
         }
     }
-    return (          
+    return (
         <div className="AddProperty">
+            <Authenticated/>
             <div className="head">
                 <br></br>
-            <h2 className="Heading">ADD PROPERTY</h2>            </div>
+                <h2 className="Heading">ADD PROPERTY</h2></div>
             <form onSubmit={handleSubmit} name="add_prop" class="add_prop_form">
-                <table >
+                <table>
                     <tr>
-                    <td><label for="purpose">Purpose :</label></td>
-                    <td>Rent : <input type="radio" name="purpose" value="Rent"/>
-                        Sale : <input type="radio" name="purpose" value="Sale"/></td>  
+                        <td><label for="purpose">Purpose :</label></td>
+                        <td>Rent : <input type="radio" name="purpose" value="Rent"/>
+                            Sale : <input type="radio" name="purpose" value="Sale"/></td>
                     </tr>
                     <tr>
-                    <td><label for="type">Type :</label></td>
-                    <td>House : <input type="radio" name="type" value="House"/>
-                        Flat : <input type="radio" name="type" value="Flat"/>
-                        Plot : <input type="radio" name="type" value="Plot"/></td>  
+                        <td><label for="type">Type :</label></td>
+                        <td>House : <input type="radio" name="type" value="House"/>
+                            Flat : <input type="radio" name="type" value="Flat"/>
+                            Plot : <input type="radio" name="type" value="Plot"/></td>
                     </tr>
                     <tr>
-                    <td><label for="location">Location :</label></td>
-                    <td><input type="text" name="location" id="location" placeholder="Location"/></td>
+                        <td><label for="location">Location :</label></td>
+                        <td><input type="text" name="location" id="location" placeholder="Location"/></td>
                     </tr>
                     <tr>
-                    <td><label for="Prop_title">Property Title :</label></td>
-                    <td><input type="text" name="prop_title" id="prop_title" placeholder="Property Title"/></td>
+                        <td><label for="Prop_title">Property Title :</label></td>
+                        <td><input type="text" name="prop_title" id="prop_title" placeholder="Property Title"/></td>
                     </tr>
                     <tr>
-                    <td><label for="description">Description :</label></td>
-                    <td><input type="text" name="description" id="description" placeholder="Description"/></td>
+                        <td><label for="description">Description :</label></td>
+                        <td><input type="text" name="description" id="description" placeholder="Description"/></td>
                     </tr>
                     <tr>
-                    <td><label for="price">Price :</label></td>
-                    <td><input type="text" name="price" id="price" placeholder="Price"/></td>
+                        <td><label for="price">Price :</label></td>
+                        <td><input type="text" name="price" id="price" placeholder="Price"/></td>
                     </tr>
                     <tr>
-                    <td><label for="area">Area :</label></td>
-                    <td><input type="text" name="area" id="area" placeholder="Area"/></td>
+                        <td><label for="area">Area :</label></td>
+                        <td><input type="text" name="area" id="area" placeholder="Area"/></td>
                     </tr>
                     <tr>
                         <td><label for="no_of_bed">No. of Bedrooms :</label></td>
@@ -114,17 +113,17 @@ const AddProperty = () => {
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                                 <option value="5">5</option>
-v                                <option value="5">5</option>
+                                v <option value="5">5</option>
                                 <option value="6">6</option>
 
                             </select>
                         </td>
                     </tr>
                     <tr>
-                    <td colspan="2"><input type="submit" align ='center' class="submit" value="Submit" /></td>
+                        <td colspan="2"><input type="submit" align='center' class="submit" value="Submit"/></td>
                     </tr>
                 </table>
-            </form>          
+            </form>
         </div>
     );
 }

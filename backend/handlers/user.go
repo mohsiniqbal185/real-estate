@@ -27,8 +27,9 @@ type SignupRequest struct {
 func Profile(c *gin.Context) {
 	session := sessions.Default(c)
 	user := session.Get(Userkey)
-	// TODO: get full profile from db
-	c.JSON(http.StatusOK, gin.H{"user": user})
+	firstName := session.Get(UserFirstName)
+	lastName := session.Get(UserLastName)
+	c.JSON(http.StatusOK, gin.H{"user": user, "firstname": firstName, "lastname": lastName})
 }
 
 // Login is a handler that parses a Json and checks for specific data
@@ -50,7 +51,9 @@ func Login(c *gin.Context) {
 
 	db := database.GetDatabase()
 	validPassword := ""
-	err := db.QueryRow("select password from user where id=?", loginDetails.UserName).Scan(&validPassword)
+	firstName := ""
+	lastName := ""
+	err := db.QueryRow("select firstname, lastname ,password from user where id=?", loginDetails.UserName).Scan(&firstName, &lastName, &validPassword)
 	if err != nil && err != sql.ErrNoRows {
 		log.Print("Error in database query", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Database failure"})
@@ -62,6 +65,8 @@ func Login(c *gin.Context) {
 
 	// Save the username in the session
 	session.Set(Userkey, loginDetails.UserName)
+	session.Set(UserFirstName, firstName)
+	session.Set(UserLastName, lastName)
 	if err := session.Save(); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to save session"})
 		return
