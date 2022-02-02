@@ -7,11 +7,11 @@ import {POST, request, StatusOK} from "./request_helper";
 const getPropertyData = async (type) => {
     // instead of this call backend to get property data
     //
-    // let response = await request(POST, "/listing/search", null)
+     let response = await request(POST, "/listing/search",{"type": type})
     //
-    // if (response.status === StatusOK) {
-    //     return response.json();
-    // }
+     if (response.status === StatusOK) {
+         return response.json();
+     }
     return Data
 }
 

@@ -546,3 +546,42 @@ div.error-message {
     flex: 1;
     font-size: 1.5rem;
 }
+div.Searchbar {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 5px;
+    /* border: 3px solid black; */
+    width: 700px;
+    box-shadow: 2px 4px 6px rgb(58, 57, 57);
+    padding: 10px;
+    background-color: rgba(236, 234, 229, 0.308);
+    border-radius: 10px;
+  }
+  
+  div.Searchbar button {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    padding: 8px;
+  }
+  
+  div.Searchbar button:hover {
+    opacity: 0.8;
+  }
+  
+  div.Searchbar input {
+    width: 280px;
+    border: 1px solid black;
+    margin-inline: 10px;
+    border-radius: 5px;
+  }
+  
+  div.Searchbar select {
+    width: 280px;
+    margin-inline: 10px;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    padding: 7px;
+    border-radius: 5px;
+  }
