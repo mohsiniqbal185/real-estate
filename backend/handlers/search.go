@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"backend/database"
+	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
@@ -24,62 +25,123 @@ type AddPropertyRequest struct {
 	Noofbath    string `form:"no_of_bath" json:"no_of_bath" binding:"required"`
 }
 type searchFilters struct {
-	forRentOrSell string
+	ForRentOrSell string
 	PriceFrom     float64
 	PriceTo       float64
 	AreaFrom      float64
 	AreaTo        float64
-	Page          int64
-	Limit         int64
-	SortBy        string
-	SortOrder     string
 }
 
 type propertyResult struct {
-	Title         string  `json:"title"`
-	Description   string  `json:"description"`
-	Area          float64 `json:"area"`
-	Price         float64 `json:"price"`
-	ContactNumber string  `json:"contact_number"`
-	AgentName     string  `json:"agent_name"`
+	Id           int64   `json:"id"`
+	Type         string  `json:"type"`
+	Location     string  `json:"location"`
+	Title        string  `json:"title"`
+	Area         float64 `json:"area"`
+	Price        float64 `json:"price"`
+	Description  string  `json:"description"`
+	NoOfBedRooms float64 `json:"bedroom"`
+	NoOfBaths    float64 `json:"bathroom"`
+	Image        string  `json:"imgsrc"`
+	OwnerId      string  `json:"owner_id"`
 }
 
+/*imgsrc:image1,
+  price:'5 Crore',
+  title: 'Bahria Hills Town Villa',
+  location:'Bahria Hills Bahria Town Karachi Pakistan',
+  area:'500 sqft',
+  bedroom:'5 bedroon',
+  bathroom:'4 bathroon',*/
+
 func SearchListing(c *gin.Context) {
+	queryParams := c.Request.URL.Query()
 	searchFilters := searchFilters{
-		forRentOrSell: c.GetString("f"),
-		PriceFrom:     c.GetFloat64("price_from"),
-		PriceTo:       c.GetFloat64("price_to"),
-		AreaFrom:      c.GetFloat64("area_from"),
-		AreaTo:        c.GetFloat64("area_to"),
-		Page:          c.GetInt64("page"),
-		Limit:         c.GetInt64("limit"),
-		SortBy:        c.GetString("sort_by"),
-		SortOrder:     c.GetString("sort_order"),
+		ForRentOrSell: queryParams.Get("f"),
+		PriceFrom:     cast.ToFloat64(queryParams.Get("price_from")),
+		PriceTo:       cast.ToFloat64(queryParams.Get("price_to")),
+		AreaFrom:      cast.ToFloat64(queryParams.Get("area_from")),
+		AreaTo:        cast.ToFloat64(queryParams.Get("area_to")),
 	}
 
 	fmt.Printf("Search listing api called with filters %v", searchFilters)
 
 	// Get list of properties from database
 	results := make([]propertyResult, 0)
+	db := database.GetDatabase()
 
-	// Some sample results for now but this needs to be fetched from database
+	query := "select sale_prop_Id, prop_type, prop_location, prop_title, prop_area, prop_description, prop_price, no_of_bedrooms, no_of_baths, prop_images, prop_owner_id from sale_property where 1=1 "
+	if searchFilters.ForRentOrSell == "rent" {
+		query = "select rental_prop_id, prop_type, prop_location, prop_title, prop_area, prop_description, prop_rent, no_of_bedrooms, no_of_baths, prop_images, prop_owner_id  from rental_property where 1=1 "
+	}
 
-	results = append(results, propertyResult{
-		Title:         "A very beautiful Villa",
-		Description:   "This property is blaa blaa blaa .... ",
-		Area:          20.1,
-		Price:         1000,
-		ContactNumber: "03333333333",
-		AgentName:     "Mohsin",
-	})
-	results = append(results, propertyResult{
-		Title:         "Another beautiful Villa",
-		Description:   "This property is also blaa blaa blaa .... ",
-		Area:          20.1,
-		Price:         1000,
-		ContactNumber: "03333333333",
-		AgentName:     "Mohsin",
-	})
+	// Price from filters
+	if searchFilters.PriceFrom > 0 && searchFilters.ForRentOrSell == "rent" {
+		query += " and prop_rent >" + cast.ToString(searchFilters.PriceFrom)
+	}
+	if searchFilters.PriceFrom > 0 && searchFilters.ForRentOrSell == "sale" {
+		query += " and prop_price >" + cast.ToString(searchFilters.PriceFrom)
+	}
+
+	// Price to filters
+	if searchFilters.PriceTo > 0 && searchFilters.ForRentOrSell == "rent" {
+		query += " and prop_rent <" + cast.ToString(searchFilters.PriceTo)
+	}
+	if searchFilters.PriceTo > 0 && searchFilters.ForRentOrSell == "sale" {
+		query += " and prop_price <" + cast.ToString(searchFilters.PriceTo)
+	}
+
+	// Area from filters
+	if searchFilters.AreaFrom > 0 {
+		query += " and prop_area >" + cast.ToString(searchFilters.AreaFrom)
+	}
+	// Area to filters
+	if searchFilters.AreaTo > 0 {
+		query += " and prop_area <" + cast.ToString(searchFilters.AreaTo)
+	}
+
+	rows, err := db.Query(query)
+	if err != nil {
+		log.Print(err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Database failure"})
+		return
+	}
+
+	for rows.Next() {
+		var (
+			propId           int64
+			propType         sql.NullString
+			propLocation     sql.NullString
+			propTitle        sql.NullString
+			propArea         sql.NullFloat64
+			propPrice        sql.NullFloat64
+			propDescription  sql.NullString
+			propNoOfBedRooms sql.NullFloat64
+			propNoOfBaths    sql.NullFloat64
+			propImage        sql.NullString
+			propOwnerId      sql.NullString
+		)
+		err := rows.Scan(&propId, &propType, &propLocation, &propTitle, &propArea, &propDescription, &propPrice, &propNoOfBedRooms, &propNoOfBaths, &propImage, &propOwnerId)
+		if err != nil {
+			log.Print(err)
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Database failure"})
+			return
+		}
+		results = append(results, propertyResult{
+			Id:           propId,
+			Type:         propType.String,
+			Location:     propLocation.String,
+			Title:        propTitle.String,
+			Area:         propArea.Float64,
+			Description:  propDescription.String,
+			Price:        propPrice.Float64,
+			NoOfBedRooms: propNoOfBedRooms.Float64,
+			NoOfBaths:    propNoOfBaths.Float64,
+			Image:        propImage.String,
+			OwnerId:      propOwnerId.String,
+		})
+
+	}
 
 	c.JSON(http.StatusOK, results)
 }
