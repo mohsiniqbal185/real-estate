@@ -100,7 +100,7 @@ func AddProperty(c *gin.Context) {
 	}
 
 	db := database.GetDatabase()
-	if strings.Trim(addpropertyDetails.Purpose, " ") == "rent" {
+	if strings.Trim(addpropertyDetails.Purpose, " ") == "Rent" {
 		_, err := db.Exec("INSERT INTO RENTAL_PROPERTY( `prop_type`, `prop_location`, `prop_title`, `prop_area`, `prop_description`, `prop_rent`,  `no_of_bedrooms`, `no_of_baths`, `prop_owner_id`) VALUES (?,?,?,?,?,?,?,?,?) ", addpropertyDetails.Type, addpropertyDetails.Location, addpropertyDetails.Prop_title, cast.ToFloat64(addpropertyDetails.Area), addpropertyDetails.Description, cast.ToFloat64(addpropertyDetails.Price), cast.ToFloat64(addpropertyDetails.Noofbed), cast.ToFloat64(addpropertyDetails.Noofbath), user)
 		if err != nil {
 			log.Print("Error in database query", err)
@@ -110,7 +110,7 @@ func AddProperty(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"message": "Successfully added property"})
 
 	} else {
-		_, err := db.Exec("INSERT INTO SALE_PROPERTY( `prop_type`, `prop_location`, `prop_title`, `prop_area`, `prop_description`, `prop_price`,  `no_of_bedrooms`, `no_of_baths`, `prop_images`, `prop_owner_id`) VALUES (?,?,?,?,?,?,?,?) ", addpropertyDetails.Type, addpropertyDetails.Location, addpropertyDetails.Prop_title, cast.ToFloat64(addpropertyDetails.Area), addpropertyDetails.Description, addpropertyDetails.Price, cast.ToFloat64(addpropertyDetails.Noofbed), cast.ToFloat64(addpropertyDetails.Noofbath), user)
+		_, err := db.Exec("INSERT INTO SALE_PROPERTY( `prop_type`, `prop_location`, `prop_title`, `prop_area`, `prop_description`, `prop_price`,  `no_of_bedrooms`, `no_of_baths`, `prop_owner_id`) VALUES (?,?,?,?,?,?,?,?,?) ", addpropertyDetails.Type, addpropertyDetails.Location, addpropertyDetails.Prop_title, cast.ToFloat64(addpropertyDetails.Area), addpropertyDetails.Description, addpropertyDetails.Price, cast.ToFloat64(addpropertyDetails.Noofbed), cast.ToFloat64(addpropertyDetails.Noofbath), user)
 		if err != nil {
 			log.Print("Error in database query", err)
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Database failure"})
