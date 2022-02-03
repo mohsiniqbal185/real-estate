@@ -94,11 +94,12 @@ const PropertyView = () => {
 
             <div className='row gy-4'>
                 {
+                    data.length > 0 &&
                     data.map((val, ind) => {
                         return <View key={ind}
-                                    id= {val.id}
-                                    purpose={forRentOrSale}
-                                    type= {val.type}
+                                     id={val.id}
+                                     purpose={forRentOrSale}
+                                     type={val.type}
                                      imgsrc={val.imgsrc}
                                      price={val.price}
                                      title={val.title}
@@ -109,6 +110,16 @@ const PropertyView = () => {
                         />
                     })
                 }
+                {
+                    data.length === 0 && <center>
+                        <br/>
+                        <br/>
+                        <br/>
+                        No properties available for search criteria
+                    </center>
+
+                }
+
 
             </div>
         </section>
