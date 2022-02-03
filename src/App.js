@@ -16,10 +16,10 @@ import Header from './Components/header';
 import SignUp from './Components/signup';
 import Head from './Components/head';
 import Foot from './Components/foot';
-import PropertyDisplay from './Components/propertydisplay';
 import propertydetail from './Components/propertydetail';
 import PropertyView from "./Components/PropertyView";
 import View from "./Components/View";
+import Searchbar from './Components/searchbar';
 
 function App() {
 
@@ -38,7 +38,7 @@ function App() {
                         <Redirect to="/home"/>
                     </Route>
                     <Route exact path="/search">
-                        <Search/>
+                        <Searchbar/>
 
                     </Route>
                     <Route exact path="/login">

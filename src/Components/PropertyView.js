@@ -7,14 +7,6 @@ import {useHistory} from "react-router-dom";
 
 const getPropertyData = async (forRentOrSale) => {
     // instead of this call backend to get property data
-<<<<<<< HEAD
-    //
-     let response = await request(POST, "/listing/search",{"type": type})
-    //
-     if (response.status === StatusOK) {
-         return response.json();
-     }
-=======
     let urlSearchParams = new URLSearchParams(window.location.search)
     /*
 		PriceFrom:     c.GetFloat64("price_from"),
@@ -53,7 +45,6 @@ const getPropertyData = async (forRentOrSale) => {
     if (response.status === StatusOK) {
         return response.json();
     }
->>>>>>> 9c1a7cd05e0c23661ec45f0e4098953f5d58ec78
     return Data
 }
 
