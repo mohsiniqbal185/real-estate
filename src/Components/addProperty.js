@@ -49,33 +49,50 @@ const AddProperty = () => {
     return (
         <div className="AddProperty">
             <Authenticated/>
-            <div className="head">
-                <br></br>
-                <h2 className="Heading">ADD PROPERTY</h2></div>
+            <div>
+                <h2 className="propertydetail">Add Property</h2></div>
             <form onSubmit={handleSubmit} name="add_prop" class="add_prop_form">
+
                 <table>
                     <tr>
                         <td><label for="purpose">Purpose :</label></td>
-                        <td>Rent : <input type="radio" name="purpose" value="Rent"/>
-                            Sale : <input type="radio" name="purpose" value="Sale"/></td>
+                        <td>
+                            <div className="col-50"> Rent :</div>
+                            <div className="col-50"><input type="radio" name="purpose" value="Rent"/></div>
+                            <br/>
+                            <div className="col-50">Sale :</div>
+                            <div className="col-50"><input type="radio" name="purpose" value="Sale"/></div>
+                        </td>
                     </tr>
                     <tr>
-                        <td><label for="type">Type :</label></td>
-                        <td>House : <input type="radio" name="type" value="House"/>
-                            Flat : <input type="radio" name="type" value="Flat"/>
-                            Plot : <input type="radio" name="type" value="Plot"/></td>
+                        <td>
+                            <label for="type">Type :</label></td>
+                        <td>
+                            <div class="col-50">House :</div>
+                            <div class="col-50"><input type="radio" name="type" value="House"/></div>
+                            <br/>
+                            <div className="col-50">Flat :</div>
+
+                            <div className="col-50"><input type="radio" name="type" value="Flat"/></div>
+                            <br/>
+                            <div className="col-50">Plot :</div>
+
+                            <div className="col-50"><input type="radio" name="type" value="Plot"/></div>
+                        </td>
                     </tr>
                     <tr>
                         <td><label for="location">Location :</label></td>
-                        <td><input type="text" name="location" id="location" placeholder="Location"required/></td>
+                        <td><input type="text" name="location" id="location" placeholder="Location" required/></td>
                     </tr>
                     <tr>
                         <td><label for="Prop_title">Property Title :</label></td>
-                        <td><input type="text" name="prop_title" id="prop_title" placeholder="Property Title" required/></td>
+                        <td><input type="text" name="prop_title" id="prop_title" placeholder="Property Title" required/>
+                        </td>
                     </tr>
                     <tr>
                         <td><label for="description">Description :</label></td>
-                        <td><input type="text" name="description" id="description" placeholder="Description" required/></td>
+                        <td><input type="text" name="description" id="description" placeholder="Description" required/>
+                        </td>
                     </tr>
                     <tr>
                         <td><label for="price">Price :</label></td>
@@ -88,7 +105,7 @@ const AddProperty = () => {
                     <tr>
                         <td><label for="no_of_bed">No. of Bedrooms :</label></td>
                         <td>
-                            <select name="no_of_bed" id="no_of_bed" >
+                            <select name="no_of_bed" id="no_of_bed">
                                 <option value="">Select Bedrooms</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -125,6 +142,7 @@ const AddProperty = () => {
                 </table>
             </form>
         </div>
-    );
+    )
+        ;
 }
 export default AddProperty;

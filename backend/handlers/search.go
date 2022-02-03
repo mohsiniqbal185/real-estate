@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"math/rand"
 	"net/http"
 	"strings"
 
@@ -51,6 +52,8 @@ type propertyResult struct {
 	NoOfBaths    float64 `json:"bathroom"`
 	Image        string  `json:"imgsrc"`
 	OwnerId      string  `json:"owner_id"`
+	AgentContact string  `json:"agent_contact"`
+	Purpose      string  `json:"purpose"`
 }
 
 /*imgsrc:image1,
@@ -83,14 +86,14 @@ func SearchListing(c *gin.Context) {
 	results := make([]propertyResult, 0)
 	db := database.GetDatabase()
 
-	query := "select sale_prop_Id, prop_type, prop_location, prop_title, prop_area, prop_description, prop_price, no_of_bedrooms, no_of_baths, prop_images, prop_owner_id from sale_property where 1=1 "
+	query := "select sale_prop_Id, prop_type, prop_location, prop_title, prop_area, prop_description, prop_price, no_of_bedrooms, no_of_baths, prop_images, prop_owner_id, u.contact from sale_property  join user u on u.Id=sale_property.prop_owner_id where 1=1 "
 	if searchFilters.ForRentOrSell == "rent" {
-		query = "select rental_prop_id, prop_type, prop_location, prop_title, prop_area, prop_description, prop_rent, no_of_bedrooms, no_of_baths, prop_images, prop_owner_id  from rental_property where 1=1 "
+		query = "select rental_prop_id, prop_type, prop_location, prop_title, prop_area, prop_description, prop_rent, no_of_bedrooms, no_of_baths, prop_images, prop_owner_id, u.contact  from rental_property join user u on u.Id=rental_property.prop_owner_id where 1=1 "
 	}
 
 	// Price from filters
 	if searchFilters.id != "" && searchFilters.ForRentOrSell == "sale" {
-		query += " sale_prop_Id =" + cast.ToString(searchFilters.id)
+		query += " and sale_prop_Id=" + cast.ToString(searchFilters.id)
 	}
 	if searchFilters.id != "" && searchFilters.ForRentOrSell == "rent" {
 		query += " and rental_prop_id =" + cast.ToString(searchFilters.id)
@@ -164,8 +167,9 @@ func SearchListing(c *gin.Context) {
 			propNoOfBaths    sql.NullFloat64
 			propImage        sql.NullString
 			propOwnerId      sql.NullString
+			contact          sql.NullString
 		)
-		err := rows.Scan(&propId, &propType, &propLocation, &propTitle, &propArea, &propDescription, &propPrice, &propNoOfBedRooms, &propNoOfBaths, &propImage, &propOwnerId)
+		err := rows.Scan(&propId, &propType, &propLocation, &propTitle, &propArea, &propDescription, &propPrice, &propNoOfBedRooms, &propNoOfBaths, &propImage, &propOwnerId, &contact)
 		if err != nil {
 			log.Print(err)
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Database failure"})
@@ -183,6 +187,8 @@ func SearchListing(c *gin.Context) {
 			NoOfBaths:    propNoOfBaths.Float64,
 			Image:        propImage.String,
 			OwnerId:      propOwnerId.String,
+			AgentContact: contact.String,
+			Purpose:      searchFilters.ForRentOrSell,
 		})
 
 	}
@@ -207,7 +213,7 @@ func AddProperty(c *gin.Context) {
 
 	db := database.GetDatabase()
 	if strings.Trim(addpropertyDetails.Purpose, " ") == "Rent" {
-		_, err := db.Exec("INSERT INTO RENTAL_PROPERTY( `prop_type`, `prop_location`, `prop_title`, `prop_area`, `prop_description`, `prop_rent`,  `no_of_bedrooms`, `no_of_baths`, `prop_owner_id`) VALUES (?,?,?,?,?,?,?,?,?) ", addpropertyDetails.Type, addpropertyDetails.Location, addpropertyDetails.Prop_title, cast.ToFloat64(addpropertyDetails.Area), addpropertyDetails.Description, cast.ToFloat64(addpropertyDetails.Price), cast.ToFloat64(addpropertyDetails.Noofbed), cast.ToFloat64(addpropertyDetails.Noofbath), user)
+		_, err := db.Exec("INSERT INTO RENTAL_PROPERTY( `prop_type`, `prop_location`, `prop_title`, `prop_area`, `prop_description`, `prop_rent`,  `no_of_bedrooms`, `no_of_baths`, `prop_owner_id`, `prop_images`) VALUES (?,?,?,?,?,?,?,?,?,?) ", addpropertyDetails.Type, addpropertyDetails.Location, addpropertyDetails.Prop_title, cast.ToFloat64(addpropertyDetails.Area), addpropertyDetails.Description, cast.ToFloat64(addpropertyDetails.Price), cast.ToFloat64(addpropertyDetails.Noofbed), cast.ToFloat64(addpropertyDetails.Noofbath), user, fmt.Sprintf("assets/img/property-%d.jpg", rand.Intn(10)+1))
 		if err != nil {
 			log.Print("Error in database query", err)
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Database failure"})
@@ -216,7 +222,7 @@ func AddProperty(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"message": "Successfully added property"})
 
 	} else {
-		_, err := db.Exec("INSERT INTO SALE_PROPERTY( `prop_type`, `prop_location`, `prop_title`, `prop_area`, `prop_description`, `prop_price`,  `no_of_bedrooms`, `no_of_baths`, `prop_owner_id`) VALUES (?,?,?,?,?,?,?,?,?) ", addpropertyDetails.Type, addpropertyDetails.Location, addpropertyDetails.Prop_title, cast.ToFloat64(addpropertyDetails.Area), addpropertyDetails.Description, addpropertyDetails.Price, cast.ToFloat64(addpropertyDetails.Noofbed), cast.ToFloat64(addpropertyDetails.Noofbath), user)
+		_, err := db.Exec("INSERT INTO SALE_PROPERTY( `prop_type`, `prop_location`, `prop_title`, `prop_area`, `prop_description`, `prop_price`,  `no_of_bedrooms`, `no_of_baths`, `prop_owner_id`, `prop_images`) VALUES (?,?,?,?,?,?,?,?,?,?) ", addpropertyDetails.Type, addpropertyDetails.Location, addpropertyDetails.Prop_title, cast.ToFloat64(addpropertyDetails.Area), addpropertyDetails.Description, addpropertyDetails.Price, cast.ToFloat64(addpropertyDetails.Noofbed), cast.ToFloat64(addpropertyDetails.Noofbath), user, fmt.Sprintf("assets/img/property-%d.jpg", rand.Intn(10)+1))
 		if err != nil {
 			log.Print("Error in database query", err)
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Database failure"})

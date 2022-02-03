@@ -4,7 +4,9 @@ import (
 	"backend/database"
 	"backend/handlers"
 	"log"
+	"math/rand"
 	"net/http"
+	"time"
 
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
@@ -28,6 +30,7 @@ func main() {
 }
 
 func engine() *gin.Engine {
+	rand.Seed(time.Now().UnixNano())
 
 	r := gin.New()
 	r.Use(CORSMiddleware())

@@ -1,5 +1,4 @@
 body {
-    min-height: 500vh;
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -11,6 +10,12 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.card-img-top {
+    max-height: 200px;
+
+    overflow: hidden;
 }
 
 .gap {
@@ -45,6 +50,11 @@ button.logIn {
     color: white;
     padding: 7px 13px;
     margin-top: 50px;
+}
+
+::placeholder {
+    color: black;
+    font-size: 20px;
 }
 
 input:focus {
@@ -151,46 +161,63 @@ div.AddProperty table {
     margin-right: auto;
     margin-bottom: 100px;
     /* padding: -30px; */
-    font-size: 25px;
-  }
-  
-  div.AddProperty table th,
-  div.AddProperty table td {
+    font-size: 18px;
+}
+
+div.AddProperty table th,
+div.AddProperty table td {
     padding: 10px;
-  }
-  
-  div.AddProperty input {
+}
+
+div.AddProperty input {
     border-radius: 10px;
     border: 2px solid black;
-  }
-  
-  div.AddProperty input.submit {
+}
+
+div.AddProperty input[type=submit] {
     background-color: black;
     color: white;
-  }
-  
-  div.AddProperty input.submit:hover {
+    align-items: center;
+
+}
+
+div.AddProperty input[type=radio] {
+    width: 20px;
+}
+
+div.AddProperty input.submit:hover {
     text-decoration: underline;
     opacity: 0.8;
-  }
-  
-  div.AddProperty h2 {
+}
+
+div.AddProperty h2 {
     text-align: center;
     margin-top: 2%;
     text-decoration: underline;
-  }
+}
+
+div.AddProperty .col-50 {
+    padding: 0px;
+}
 
 ul li input[type=radio] {
 
-    position:relative;
+    position: relative;
     visibility: hidden;
     size: 10px;
     margin-top: 0px;
 }
 
-tr {
-    height: 5px;
+table {
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
 }
+
+tr {
+}
+
 
 input[type=radio]:checked ~ .check::before {
     background: #0DFF92;
@@ -312,8 +339,18 @@ html {
     scroll-padding-top: 7rem;
 }
 
+.propertydetail {
+    font-weight: 500;
+    font-size: 5rem;
+    color: #ff5a3c;
+    border-radius: .5rem;
+    padding: .5rem 1.5rem;
+    margin-left: 1rem;
+}
+
 body {
     background: #f7f7f7;
+    font-size: 18px;
 }
 
 section {
@@ -342,7 +379,7 @@ section {
     color: #333;
     font-size: 4rem;
     margin-bottom: 2px;
-    /* padding-bottom: 2rem; */
+    padding-bottom: 2rem;
 }
 
 .heading span {
@@ -577,6 +614,7 @@ div.error-message {
     flex: 1;
     font-size: 1.5rem;
 }
+
 div.Searchbar {
     margin-top: 30px;
     margin-bottom: 30px;
@@ -587,28 +625,28 @@ div.Searchbar {
     padding: 10px;
     background-color: rgba(236, 234, 229, 0.308);
     border-radius: 10px;
-  }
-  
-  div.Searchbar button {
+}
+
+div.Searchbar button {
     background-color: black;
     color: white;
     border-radius: 10px;
     padding: 8px;
-  }
-  
-  div.Searchbar button:hover {
+}
+
+div.Searchbar button:hover {
     opacity: 0.8;
-  }
-  
-  div.Searchbar input {
+}
+
+div.Searchbar input {
     width: 280px;
     border: 1px solid black;
     margin-inline: 10px;
     border-radius: 5px;
     font-size: 10px;
-  }
-  
-  div.Searchbar select {
+}
+
+div.Searchbar select {
     width: 280px;
     margin-inline: 10px;
     background-color: white;
@@ -617,4 +655,4 @@ div.Searchbar {
     padding: 7px;
     border-radius: 5px;
     font-size: 2;
-  }
+}

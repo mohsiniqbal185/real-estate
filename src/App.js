@@ -20,6 +20,7 @@ import Propertydetail from './Components/propertydetail';
 import PropertyView from "./Components/PropertyView";
 import View from "./Components/View";
 import Searchbar from './Components/searchbar';
+
 function App() {
 
     return (
@@ -66,9 +67,9 @@ function App() {
                         <Propertydetail/>
 
                     </Route>
-                    <Foot/>
 
                 </Switch>
+                <Foot/>
 
             </Router>
 
