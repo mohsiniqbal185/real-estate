@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import AddProperty from '../src/component/addProperty';
-import newSearch from '../src/component/newSearch';
-import Header from '../src/component/header';
-import home from '../src/component/home';
-import Search from '../src/component/search';
-import PropertyView from '../src/component/PropertyView';
-import Footer from '../src/component/footer';
-import SignIn from '../src/component/signin'
+import addProperty from '../src/Components/addProperty'
+import newSearch from '../src/Components/newSearch';
+import Header from '../src/Components/header';
+import home from '../src/Components/home';
+import Search from '../src/Components/search';
+import PropertyView from '../src/Components/PropertyView';
+import Footer from '../src/Components/footer';
+import SignIn from '../src/Components/signin'
  
 
 function App() {
