@@ -143,22 +143,53 @@ img.imgdetail {
     margin-top: 50px;
 }
 
-div.AddProperty {
-    width: 200px;
-    height: 100px;
-    margin-bottom: 1200px;
-    padding: -100px;
-    font-size: 20px;
-}
+div.AddProperty table {
+    width: 550px;
+    height: fit-content;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 100px;
+    /* padding: -30px; */
+    font-size: 25px;
+  }
+  
+  div.AddProperty table th,
+  div.AddProperty table td {
+    padding: 10px;
+  }
+  
+  div.AddProperty input {
+    border-radius: 10px;
+    border: 2px solid black;
+  }
+  
+  div.AddProperty input.submit {
+    background-color: black;
+    color: white;
+  }
+  
+  div.AddProperty input.submit:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+  }
+  
+  div.AddProperty h2 {
+    text-align: center;
+    margin-top: 2%;
+    text-decoration: underline;
+  }
 
 ul li input[type=radio] {
-    position: absolute;
+
+    position:relative;
     visibility: hidden;
-    size: 20px;
+    size: 10px;
+    margin-top: 0px;
 }
 
 tr {
-    height: 10px;
+    height: 5px;
 }
 
 input[type=radio]:checked ~ .check::before {
@@ -574,6 +605,7 @@ div.Searchbar {
     border: 1px solid black;
     margin-inline: 10px;
     border-radius: 5px;
+    font-size: 10px;
   }
   
   div.Searchbar select {
@@ -584,4 +616,5 @@ div.Searchbar {
     border: 1px solid black;
     padding: 7px;
     border-radius: 5px;
+    font-size: 2;
   }

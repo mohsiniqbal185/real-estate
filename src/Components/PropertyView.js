@@ -18,6 +18,11 @@ const getPropertyData = async (forRentOrSale) => {
 		SortBy:        c.GetString("sort_by"),
 		SortOrder:     c.GetString("sort_order"),*/
     let path = `/listing/search?f=${forRentOrSale}`
+    let location = urlSearchParams.get("location")
+    if (location != null && location !== "") {
+        path += `&location=${location}`
+    }
+
     let priceFrom = urlSearchParams.get("price_from")
     if (priceFrom != null && priceFrom !== "") {
         path += `&price_from=${priceFrom}`
@@ -37,7 +42,22 @@ const getPropertyData = async (forRentOrSale) => {
     if (areaTo != null && areaTo !== "") {
         path += `&area_to=${areaTo}`
     }
-
+    let type = urlSearchParams.get("type")
+    if (type != null && type !== "") {
+        path += `&type=${type}`
+    }
+    let no_of_bed = urlSearchParams.get("no_of_bed")
+    if (no_of_bed != null && type !== "") {
+        path += `&no_of_bed=${no_of_bed}`
+    }
+    let no_of_bath = urlSearchParams.get("no_of_bath")
+    if (no_of_bath != null && no_of_bath !== "") {
+        path += `&no_of_bath=${no_of_bath}`
+    }
+    let sort_by_price = urlSearchParams.get("sort_by_price")
+    if (sort_by_price != null && sort_by_price !== "") {
+        path += `&sort_by_price=${sort_by_price}`
+    }
     // similarly add more filters they will be passed to page like http://localhost:3000/propforrent?price_from=1000&area_from=10
 
     let response = await request(GET, path, null);
@@ -76,6 +96,9 @@ const PropertyView = () => {
                 {
                     data.map((val, ind) => {
                         return <View key={ind}
+                                    id= {val.id}
+                                    purpose={forRentOrSale}
+                                    type= {val.type}
                                      imgsrc={val.imgsrc}
                                      price={val.price}
                                      title={val.title}

@@ -16,11 +16,10 @@ import Header from './Components/header';
 import SignUp from './Components/signup';
 import Head from './Components/head';
 import Foot from './Components/foot';
-import propertydetail from './Components/propertydetail';
+import Propertydetail from './Components/propertydetail';
 import PropertyView from "./Components/PropertyView";
 import View from "./Components/View";
 import Searchbar from './Components/searchbar';
-
 function App() {
 
     return (
@@ -36,6 +35,9 @@ function App() {
                     {/* <Route exact path="/" component={Header} /> */}
                     <Route exact path="/">
                         <Redirect to="/home"/>
+                    </Route>
+                    <Route exact path='/home'>
+                        <Home/>
                     </Route>
                     <Route exact path="/search">
                         <Searchbar/>
@@ -60,8 +62,8 @@ function App() {
                         <PropertyView/>
 
                     </Route>
-                    <Route path="/property/:id">
-                        <View/>
+                    <Route exact path="/property">
+                        <Propertydetail/>
 
                     </Route>
                     <Foot/>

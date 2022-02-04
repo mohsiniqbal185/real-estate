@@ -67,28 +67,28 @@ const AddProperty = () => {
                     </tr>
                     <tr>
                         <td><label for="location">Location :</label></td>
-                        <td><input type="text" name="location" id="location" placeholder="Location"/></td>
+                        <td><input type="text" name="location" id="location" placeholder="Location"required/></td>
                     </tr>
                     <tr>
                         <td><label for="Prop_title">Property Title :</label></td>
-                        <td><input type="text" name="prop_title" id="prop_title" placeholder="Property Title"/></td>
+                        <td><input type="text" name="prop_title" id="prop_title" placeholder="Property Title" required/></td>
                     </tr>
                     <tr>
                         <td><label for="description">Description :</label></td>
-                        <td><input type="text" name="description" id="description" placeholder="Description"/></td>
+                        <td><input type="text" name="description" id="description" placeholder="Description" required/></td>
                     </tr>
                     <tr>
                         <td><label for="price">Price :</label></td>
-                        <td><input type="text" name="price" id="price" placeholder="Price"/></td>
+                        <td><input type="text" name="price" id="price" placeholder="Price" required/></td>
                     </tr>
                     <tr>
                         <td><label for="area">Area :</label></td>
-                        <td><input type="text" name="area" id="area" placeholder="Area"/></td>
+                        <td><input type="text" name="area" id="area" placeholder="Area" required/></td>
                     </tr>
                     <tr>
                         <td><label for="no_of_bed">No. of Bedrooms :</label></td>
                         <td>
-                            <select name="no_of_bed" id="no_of_bed">
+                            <select name="no_of_bed" id="no_of_bed" >
                                 <option value="">Select Bedrooms</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>

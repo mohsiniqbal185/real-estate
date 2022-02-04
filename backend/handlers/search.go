@@ -25,11 +25,18 @@ type AddPropertyRequest struct {
 	Noofbath    string `form:"no_of_bath" json:"no_of_bath" binding:"required"`
 }
 type searchFilters struct {
-	ForRentOrSell string
-	PriceFrom     float64
-	PriceTo       float64
-	AreaFrom      float64
-	AreaTo        float64
+	id              string
+	Location        string
+	ForRentOrSell   string
+	PriceFrom       float64
+	PriceTo         float64
+	AreaFrom        float64
+	AreaTo          float64
+	Type            string
+	No_of_bedrooms  float64
+	No_of_bathrooms float64
+	sort_by_price   string
+	sort_by_area    string
 }
 
 type propertyResult struct {
@@ -57,11 +64,17 @@ type propertyResult struct {
 func SearchListing(c *gin.Context) {
 	queryParams := c.Request.URL.Query()
 	searchFilters := searchFilters{
-		ForRentOrSell: queryParams.Get("f"),
-		PriceFrom:     cast.ToFloat64(queryParams.Get("price_from")),
-		PriceTo:       cast.ToFloat64(queryParams.Get("price_to")),
-		AreaFrom:      cast.ToFloat64(queryParams.Get("area_from")),
-		AreaTo:        cast.ToFloat64(queryParams.Get("area_to")),
+		id:              queryParams.Get("id"),
+		ForRentOrSell:   queryParams.Get("f"),
+		Location:        cast.ToString(queryParams.Get("location")),
+		PriceFrom:       cast.ToFloat64(queryParams.Get("price_from")),
+		PriceTo:         cast.ToFloat64(queryParams.Get("price_to")),
+		AreaFrom:        cast.ToFloat64(queryParams.Get("area_from")),
+		AreaTo:          cast.ToFloat64(queryParams.Get("area_to")),
+		Type:            cast.ToString(queryParams.Get("type")),
+		No_of_bedrooms:  cast.ToFloat64(queryParams.Get("no_of_bed")),
+		No_of_bathrooms: cast.ToFloat64(queryParams.Get("no_of_bath")),
+		sort_by_price:   cast.ToString(queryParams.Get("sort_by_price")),
 	}
 
 	fmt.Printf("Search listing api called with filters %v", searchFilters)
@@ -76,28 +89,59 @@ func SearchListing(c *gin.Context) {
 	}
 
 	// Price from filters
+	if searchFilters.id != "" && searchFilters.ForRentOrSell == "sale" {
+		query += " sale_prop_Id =" + cast.ToString(searchFilters.id)
+	}
+	if searchFilters.id != "" && searchFilters.ForRentOrSell == "rent" {
+		query += " and rental_prop_id =" + cast.ToString(searchFilters.id)
+	}
+
+	if searchFilters.Location != "" {
+		query += fmt.Sprintf(" and prop_location='%s'", searchFilters.Location)
+	}
 	if searchFilters.PriceFrom > 0 && searchFilters.ForRentOrSell == "rent" {
-		query += " and prop_rent >" + cast.ToString(searchFilters.PriceFrom)
+		query += " and prop_rent >=" + cast.ToString(searchFilters.PriceFrom)
 	}
 	if searchFilters.PriceFrom > 0 && searchFilters.ForRentOrSell == "sale" {
-		query += " and prop_price >" + cast.ToString(searchFilters.PriceFrom)
+		query += " and prop_price >=" + cast.ToString(searchFilters.PriceFrom)
 	}
 
 	// Price to filters
 	if searchFilters.PriceTo > 0 && searchFilters.ForRentOrSell == "rent" {
-		query += " and prop_rent <" + cast.ToString(searchFilters.PriceTo)
+		query += " and prop_rent <=" + cast.ToString(searchFilters.PriceTo)
 	}
 	if searchFilters.PriceTo > 0 && searchFilters.ForRentOrSell == "sale" {
-		query += " and prop_price <" + cast.ToString(searchFilters.PriceTo)
+		query += " and prop_price <=" + cast.ToString(searchFilters.PriceTo)
 	}
 
 	// Area from filters
 	if searchFilters.AreaFrom > 0 {
-		query += " and prop_area >" + cast.ToString(searchFilters.AreaFrom)
+		query += " and prop_area >=" + cast.ToString(searchFilters.AreaFrom)
 	}
 	// Area to filters
 	if searchFilters.AreaTo > 0 {
-		query += " and prop_area <" + cast.ToString(searchFilters.AreaTo)
+		query += " and prop_area <=" + cast.ToString(searchFilters.AreaTo)
+	}
+	if searchFilters.Type != "" {
+		query += fmt.Sprintf(" and prop_type='%s'", searchFilters.Type)
+	}
+	if searchFilters.No_of_bedrooms > 0 {
+		query += " and no_of_bedrooms>=" + cast.ToString(searchFilters.No_of_bedrooms)
+	}
+	if searchFilters.No_of_bathrooms > 0 {
+		query += " and no_of_bathrooms>=" + cast.ToString(searchFilters.No_of_bathrooms)
+	}
+	if searchFilters.sort_by_price != "" && searchFilters.sort_by_price == "lowest_to_highest" && searchFilters.ForRentOrSell == "rent" {
+		query += " ORDER by prop_rent ASC"
+	}
+	if searchFilters.sort_by_price != "" && searchFilters.sort_by_price == "highest_to_lowest" && searchFilters.ForRentOrSell == "rent" {
+		query += " ORDER by prop_rent DESC"
+	}
+	if searchFilters.sort_by_price != "" && searchFilters.sort_by_price == "lowest_to_highest" && searchFilters.ForRentOrSell == "sale" {
+		query += " ORDER by prop_price ASC"
+	}
+	if searchFilters.sort_by_price != "" && searchFilters.sort_by_price == "highest_to_lowest" && searchFilters.ForRentOrSell == "sale" {
+		query += " ORDER by prop_price DESC"
 	}
 
 	rows, err := db.Query(query)
