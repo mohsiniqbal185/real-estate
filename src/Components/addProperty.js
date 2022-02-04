@@ -4,6 +4,21 @@ import Authenticated from "./authenticated.js";
 
 const AddProperty = () => {
     const [message, setMessage] = useState("");
+    const onTypeChange = async e => {
+        let type = document.querySelector("input[name='type']:checked").value
+        let bed = document.querySelector("tr[id='no_of_bed']")
+        let bath = document.querySelector("tr[id='no_of_bath']")
+        if (type === "Plot") {
+            document.querySelector("select[name='no_of_bed']").value = "";
+            bed.style.display = "none";
+            document.querySelector("select[name='no_of_bath']").value = "";
+            bath.style.display = "none";
+        } else {
+            bed.style.display = "";
+            bath.style.display = "";
+        }
+        return type
+    };
     const handleSubmit = async e => {
         e.preventDefault();
 
@@ -69,15 +84,18 @@ const AddProperty = () => {
                             <label for="type">Type :</label></td>
                         <td>
                             <div class="col-50">House :</div>
-                            <div class="col-50"><input type="radio" name="type" value="House"/></div>
+                            <div class="col-50"><input onChange={onTypeChange} type="radio" name="type" value="House"/>
+                            </div>
                             <br/>
                             <div className="col-50">Flat :</div>
 
-                            <div className="col-50"><input type="radio" name="type" value="Flat"/></div>
+                            <div className="col-50"><input onChange={onTypeChange} type="radio" name="type"
+                                                           value="Flat"/></div>
                             <br/>
                             <div className="col-50">Plot :</div>
 
-                            <div className="col-50"><input type="radio" name="type" value="Plot"/></div>
+                            <div className="col-50"><input onChange={onTypeChange} type="radio" name="type"
+                                                           value="Plot"/></div>
                         </td>
                     </tr>
                     <tr>
@@ -102,7 +120,7 @@ const AddProperty = () => {
                         <td><label for="area">Area (sq.yards) :</label></td>
                         <td><input type="text" name="area" id="area" placeholder="Area " required/></td>
                     </tr>
-                    <tr>
+                    <tr id="no_of_bed">
                         <td><label for="no_of_bed">No. of Bedrooms :</label></td>
                         <td>
                             <select name="no_of_bed" id="no_of_bed">
@@ -120,7 +138,7 @@ const AddProperty = () => {
                             </select>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="no_of_bath">
                         <td><label for="no_of_bath">No. of Bathrooms :</label></td>
                         <td>
                             <select name="no_of_bath" id="no_of_bath">
