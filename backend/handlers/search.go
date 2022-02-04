@@ -22,8 +22,8 @@ type AddPropertyRequest struct {
 	Description string `form:"description" json:"description" binding:"required"`
 	Price       string `form:"price" json:"price" binding:"required"`
 	Area        string `form:"area" json:"area" binding:"required"`
-	Noofbed     string `form:"no_of_bed" json:"no_of_bed" binding:"required"`
-	Noofbath    string `form:"no_of_bath" json:"no_of_bath" binding:"required"`
+	Noofbed     string `form:"no_of_bed" json:"no_of_bed"`
+	Noofbath    string `form:"no_of_bath" json:"no_of_bath"`
 }
 type searchFilters struct {
 	id              string
@@ -100,7 +100,7 @@ func SearchListing(c *gin.Context) {
 	}
 
 	if searchFilters.Location != "" {
-		query += fmt.Sprintf(" and prop_location='%s'", searchFilters.Location)
+		query += fmt.Sprintf(" and LOWER(prop_location) LIKE '%%%s%%'", strings.ToLower(searchFilters.Location))
 	}
 	if searchFilters.PriceFrom > 0 && searchFilters.ForRentOrSell == "rent" {
 		query += " and prop_rent >=" + cast.ToString(searchFilters.PriceFrom)
@@ -206,7 +206,7 @@ func AddProperty(c *gin.Context) {
 	}
 
 	// Validate form input
-	if strings.Trim(addpropertyDetails.Purpose, " ") == "" || strings.Trim(addpropertyDetails.Type, " ") == "" || strings.Trim(addpropertyDetails.Location, " ") == "" || strings.Trim(addpropertyDetails.Prop_title, " ") == "" || strings.Trim(addpropertyDetails.Description, " ") == "" || strings.Trim(addpropertyDetails.Price, " ") == "" || strings.Trim(addpropertyDetails.Area, " ") == "" || strings.Trim(addpropertyDetails.Noofbed, " ") == "" || strings.Trim(addpropertyDetails.Noofbath, " ") == "" {
+	if strings.Trim(addpropertyDetails.Purpose, " ") == "" || strings.Trim(addpropertyDetails.Type, " ") == "" || strings.Trim(addpropertyDetails.Location, " ") == "" || strings.Trim(addpropertyDetails.Prop_title, " ") == "" || strings.Trim(addpropertyDetails.Description, " ") == "" || strings.Trim(addpropertyDetails.Price, " ") == "" || strings.Trim(addpropertyDetails.Area, " ") == "" {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Parameters can't be empty"})
 		return
 	}
