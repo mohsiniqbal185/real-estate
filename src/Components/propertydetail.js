@@ -94,16 +94,22 @@ const Propertydetail = () => {
                                 <th>Area(sq yards)</th>
 
                                 <td>{val.area}</td>
-                                <tr>
+                                {
+                                    val.type !== "Plot" &&
+                                    <tr>
 
-                                    <th>No of Beds</th>
-                                    <td>{val.bedroom}</td>
-                                </tr>
-                                <tr>
-                                    <th>No of Baths</th>
-                                    <td>{val.bathroom}</td>
+                                        <th>No of Beds</th>
+                                        <td>{val.bedroom}</td>
+                                    </tr>
+                                }
+                                {
+                                    val.type !== "Plot" &&
+                                    <tr>
+                                        <th>No of Baths</th>
+                                        <td>{val.bathroom}</td>
 
-                                </tr>
+                                    </tr>
+                                }
                                 <tr>
                                     <th>Agent Contact Number</th>
                                     <td>{val.agent_contact}</td>

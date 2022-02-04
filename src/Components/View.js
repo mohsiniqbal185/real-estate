@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import '../index.css';
 import propertydetail from "./propertydetail";
 
@@ -21,16 +21,23 @@ const View = (props) => {
                         </div>
                         <div class="details">
                             <h3><i class="fas fa-expand"></i>{props.area} sq yards</h3>
-                            <h3><i class="fas fa-bed"></i>{props.bedroom} bedrooms</h3>
-                            <h3><i class="fas fa-bath"></i>{props.bathroom} bathrooms</h3>
+                            {
+                                props.type !== "Plot" &&
+                                <h3><i class="fas fa-bed"></i>{props.bedroom} bedrooms</h3>
+                            }
+                            {
+                                props.type !== "Plot" &&
+                                <h3><i class="fas fa-bath"></i>{props.bathroom} bathrooms</h3>
+                            }
                         </div>
                         <div class="buttons">
-                            <a href={"/property/?prop_id="+props.id+"&purpose="+props.purpose} class="btn">Description</a>
+                            <a href={"/property/?prop_id=" + props.id + "&purpose=" + props.purpose}
+                               class="btn">Description</a>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
         </div>
     );
 }
