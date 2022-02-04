@@ -51,8 +51,7 @@ const AddProperty = () => {
         console.log(response);
         if (response.status === StatusOK) {
             // localStorage.setItem('user', JSON.stringify(username));
-            window.location.href = "/home";
-            setMessage("successfully added property");
+            window.location.href = "/myads";
             console.log("Successfully added property");
             // window.location.href='/login';
         } else {
@@ -142,13 +141,13 @@ const AddProperty = () => {
                         <td><label for="no_of_bath">No. of Bathrooms :</label></td>
                         <td>
                             <select name="no_of_bath" id="no_of_bath">
-                                <option value=""selected="selected">Select Bathrooms</option>
+                                <option value="" selected="selected">Select Bathrooms</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                                 <option value="5">5</option>
-                                v <option value="5">5</option>
+                                <option value="5">5</option>
                                 <option value="6">6</option>
 
                             </select>
@@ -157,6 +156,11 @@ const AddProperty = () => {
                     <tr>
                         <td colspan="2"><input type="submit" align='center' class="submit" value="Submit"/></td>
                     </tr>
+                    <center>
+                        <div className="error-message"
+                             style={message === "" ? {display: "none"} : {}}>{message}
+                        </div>
+                    </center>
                 </table>
             </form>
         </div>

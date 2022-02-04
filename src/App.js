@@ -20,6 +20,7 @@ import Propertydetail from './Components/propertydetail';
 import PropertyView from "./Components/PropertyView";
 import View from "./Components/View";
 import Searchbar from './Components/searchbar';
+import MyPropertyView from "./Components/MyPropertiesView";
 
 function App() {
 
@@ -65,6 +66,10 @@ function App() {
                     </Route>
                     <Route exact path="/property">
                         <Propertydetail/>
+
+                    </Route>
+                    <Route exact path="/myads">
+                        <MyPropertyView/>
 
                     </Route>
 

@@ -38,6 +38,7 @@ type searchFilters struct {
 	No_of_bathrooms float64
 	sort_by_price   string
 	sort_by_area    string
+	Self            string
 }
 
 type propertyResult struct {
@@ -70,6 +71,7 @@ func SearchListing(c *gin.Context) {
 		id:              queryParams.Get("id"),
 		ForRentOrSell:   queryParams.Get("f"),
 		Location:        cast.ToString(queryParams.Get("location")),
+		Self:            cast.ToString(queryParams.Get("self")),
 		PriceFrom:       cast.ToFloat64(queryParams.Get("price_from")),
 		PriceTo:         cast.ToFloat64(queryParams.Get("price_to")),
 		AreaFrom:        cast.ToFloat64(queryParams.Get("area_from")),
@@ -91,6 +93,11 @@ func SearchListing(c *gin.Context) {
 		query = "select rental_prop_id, prop_type, prop_location, prop_title, prop_area, prop_description, prop_rent, no_of_bedrooms, no_of_baths, prop_images, prop_owner_id, u.contact  from rental_property join user u on u.Id=rental_property.prop_owner_id where 1=1 "
 	}
 
+	if searchFilters.Self == "true" {
+		session := sessions.Default(c)
+		user := session.Get(Userkey)
+		query += fmt.Sprintf(" and prop_owner_id='%s'", cast.ToString(user))
+	}
 	// Price from filters
 	if searchFilters.id != "" && searchFilters.ForRentOrSell == "sale" {
 		query += " and sale_prop_Id=" + cast.ToString(searchFilters.id)

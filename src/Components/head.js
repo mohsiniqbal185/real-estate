@@ -38,6 +38,7 @@ const renderUserInfo = (profile) => {
                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
                aria-expanded="false">{`Welcome ${profile.firstname}`}</a>
             <div className="dropdown-menu">
+                <a href={"/myads"} className="dropdown-item">View my ads</a>
                 <a className="dropdown-item" onClick={logout}>Logout</a>
             </div>
         </li>);
@@ -83,6 +84,7 @@ const Head = () => {
                         <a className="ap"><Link to='/addproperty'>Add Property</Link></a>
                     </li>
                     {renderUserInfo(profile)}
+
                 </ul>
             </nav>
         </div>
