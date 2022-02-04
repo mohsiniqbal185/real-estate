@@ -642,7 +642,7 @@ div.Searchbar input {
     border: 1px solid black;
     margin-inline: 10px;
     border-radius: 5px;
-    font-size: 10px;
+    font-size: 18px;
 }
 
 div.Searchbar select {
@@ -653,5 +653,4 @@ div.Searchbar select {
     border: 1px solid black;
     padding: 7px;
     border-radius: 5px;
-    font-size: 2;
 }
