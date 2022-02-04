@@ -43,13 +43,12 @@ input {
 button.logIn {
     display: inline;
     background-color: black;
-    margin-bottom: 20px;
     font-size: 20px;
     border-radius: 15px;
     cursor: pointer;
     color: white;
     padding: 7px 13px;
-    margin-top: 50px;
+    margin-top: 10px;
 }
 
 ::placeholder {

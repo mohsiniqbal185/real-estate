@@ -16,6 +16,8 @@ const View = (props) => {
                         <div class="location">
                             <h3>{props.title}</h3>
                             <p>{props.location}</p>
+                            <p>{props.type}</p>
+
                         </div>
                         <div class="details">
                             <h3><i class="fas fa-expand"></i>{props.area} sq yards</h3>

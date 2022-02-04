@@ -99,14 +99,14 @@ const AddProperty = () => {
                         <td><input type="text" name="price" id="price" placeholder="Price" required/></td>
                     </tr>
                     <tr>
-                        <td><label for="area">Area :</label></td>
-                        <td><input type="text" name="area" id="area" placeholder="Area" required/></td>
+                        <td><label for="area">Area (sq.yards) :</label></td>
+                        <td><input type="text" name="area" id="area" placeholder="Area " required/></td>
                     </tr>
                     <tr>
                         <td><label for="no_of_bed">No. of Bedrooms :</label></td>
                         <td>
                             <select name="no_of_bed" id="no_of_bed">
-                                <option value="">Select Bedrooms</option>
+                                <option value="" selected="selected">Select Bedrooms</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -124,7 +124,7 @@ const AddProperty = () => {
                         <td><label for="no_of_bath">No. of Bathrooms :</label></td>
                         <td>
                             <select name="no_of_bath" id="no_of_bath">
-                                <option value="">Select Bathrooms</option>
+                                <option value=""selected="selected">Select Bathrooms</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
