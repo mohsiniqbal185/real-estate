@@ -1,49 +1,86 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
+
+
 import './App.css';
-import AddProperty from '../src/component/addProperty';
-import newSearch from '../src/component/newSearch';
-import Header from '../src/component/header';
-import home from '../src/component/home';
-import Search from '../src/component/search';
-import PropertyView from '../src/component/PropertyView';
-import Footer from '../src/component/footer';
-import SignIn from '../src/component/signin'
- 
+
+
+import Home from './Components/home';
+
+
+import Search from './Components/search';
+import AddProperty from './Components/addProperty';
+import Footer from './Components/footer';
+import SignIn from './Components/signin';
+import Header from './Components/header';
+import SignUp from './Components/signup';
+import Head from './Components/head';
+import Foot from './Components/foot';
+import Propertydetail from './Components/propertydetail';
+import PropertyView from "./Components/PropertyView";
+import View from "./Components/View";
+import Searchbar from './Components/searchbar';
+import MyPropertyView from "./Components/MyPropertiesView";
 
 function App() {
 
-  return (
+    return (
 
-    <div className="wrapper">
+        <div className="wrapper">
 
-      <Router>
-        <Header/>
-        <Switch>
-        
+            <Router>
+                <Head/>
 
+                <Switch>
 
-          {/* <Route path="/" component={home} /> */}
-          
-          {/* <Route exact path="/" component={Header} /> */}
-          
-          {/*<Route exact path="/" component={SignIn} />*/}
-          <PropertyView/>
+                    {/* <Route path="/" component={home} /> */}
+                    {/* <Route exact path="/" component={Header} /> */}
+                    <Route exact path="/">
+                        <Redirect to="/home"/>
+                    </Route>
+                    <Route exact path='/home'>
+                        <Home/>
+                    </Route>
+                    <Route exact path="/search">
+                        <Searchbar/>
 
-          {/* <Route path="/search" component={Search} /> */}
+                    </Route>
+                    <Route exact path="/login">
+                        <SignIn/>
 
+                    </Route>
+                    <Route path="/addproperty">
+                        <AddProperty/>
+                    </Route>
+                    <Route exact path="/signup">
+                        <SignUp/>
 
-          <Route path="/search" component={Search} />
+                    </Route>
+                    <Route exact path="/propforrent">
+                        <PropertyView/>
 
+                    </Route>
+                    <Route exact path="/propforsale">
+                        <PropertyView/>
 
-        </Switch>
-        <Footer/>
+                    </Route>
+                    <Route exact path="/property">
+                        <Propertydetail/>
 
-      </Router>
+                    </Route>
+                    <Route exact path="/myads">
+                        <MyPropertyView/>
 
-    </div>
+                    </Route>
 
-  );
+                </Switch>
+                <Foot/>
+
+            </Router>
+
+        </div>
+
+    );
 
 }
 

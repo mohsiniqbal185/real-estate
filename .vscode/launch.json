@@ -9,8 +9,10 @@
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "D:\\Project\\SE_Project\\real-estate\\backend\\main\\main.go"
+            "program": "C:\\Users\\Mohsin\\OneDrive\\Desktop\\SE Project\\real-estate\\backend\\main\\main.go"
         },
+
+    
     
     ]
 }

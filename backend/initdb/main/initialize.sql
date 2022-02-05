@@ -42,8 +42,8 @@ CREATE TABLE `rental_property` (
 --
 
 INSERT INTO `rental_property` (`rental_prop_id`, `prop_type`, `prop_location`, `prop_title`, `prop_area`, `prop_description`, `prop_rent`, `prop_rating`, `no_of_bedrooms`, `no_of_baths`, `prop_images`, `prop_owner_id`) VALUES
-(1, 'Flat', 'North Nazimabad, Block N', 'Ideal flat for rent in posh area of karachi.', 120, 'Flat Available For Rent Vip Block West Open,\r\nPrime Location Secure Investment,\r\nOpen Plot Block N (160 Square Yard)\r\nPrice View Contact Detail North Nazimabad\r\n', 20000, NULL, 3, 4, 'assets\\img\\property-1.jpg', 'mehdizafar@gmail.com'),
-(2, 'House', 'Kesc society, Scheme 33', 'House for rent in best society of Karachi', 200, 'good society\r\n40 ft main street plot.\r\n', 80000, NULL, 5, 5, 'assets\\img\\property-3.jpg', 'hamzajunaid69@gmail.com');
+(1, 'Flat', 'North Nazimabad, Block N', 'Ideal flat for rent in posh area of karachi.', 120, 'Flat Available For Rent Vip Block West Open,\r\nPrime Location Secure Investment,\r\nOpen Plot Block N (160 Square Yard)\r\nPrice View Contact Detail North Nazimabad\r\n', 20000, NULL, 3, 4, 'C:\\Users\\Mohsin\\Downloads\\real-estate-46f9b2e9a06119f0cfeeaa04899999f01fb34f11\\public\\assets\\img\\agent-1.jpg', 'mehdizafar@gmail.com'),
+(2, 'House', 'Kesc society, Scheme 33', 'House for rent in best society of Karachi', 200, 'good society\r\n40 ft main street plot.\r\n', 80000, NULL, 5, 5, 'C:\\Users\\Mohsin\\Downloads\\real-estate-46f9b2e9a06119f0cfeeaa04899999f01fb34f11\\public\\assets\\img\\agent-3.jpg', 'hamzajunaid69@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -109,8 +109,8 @@ CREATE TABLE `sale_property` (
 --
 
 INSERT INTO `sale_property` (`sale_prop_Id`, `prop_type`, `prop_location`, `prop_title`, `prop_area`, `prop_description`, `prop_price`, `prop_rating`, `no_of_bedrooms`, `no_of_baths`, `prop_images`, `prop_owner_id`) VALUES
-(1, 'House', 'Gulistan-e-Jauhar, Block 13', 'Property for sale in the best area of pakistan', 240, 'Park Facing Good Location Plot Leased Plot For Sale\r\nget Yourself A Commercial Plot That Suits Your Needs Perfectly. The Right Property For Sale Is Just A Click Away, So Take Action Today. Your Future', 5000000, NULL, 5, 4, 'assets\\img\\property-1.jpg', 'hamzajunaid69@gmail.com'),
-(2, 'Plot', 'Gulshan-e-Iqbal', 'Plot for sale in block 12, Gulshan-e-Iqbal', 160, 'Plot Available For Sale Vip Block West Open,\r\nPrime Location Secure Investment,\r\nOpen Plot Block 12 (160 Square Yard)\r\nPrice View Contact Detail Gulshan-e-Iqbal\r\nGulshan-e-Iqbal Sale Purchase & Advice', 5500000, NULL, NULL, NULL, 'assets\\img\\property-2.jpg', 'mohsiniqbal2000@yahoo.com');
+(1, 'House', 'Gulistan-e-Jauhar, Block 13', 'Property for sale in the best area of pakistan', 240, 'Park Facing Good Location Plot Leased Plot For Sale\r\nget Yourself A Commercial Plot That Suits Your Needs Perfectly. The Right Property For Sale Is Just A Click Away, So Take Action Today. Your Future', 5000000, NULL, 5, 4, 'C:\\Users\\Mohsin\\Downloads\\real-estate-46f9b2e9a06119f0cfeeaa04899999f01fb34f11\\public\\assets\\img\\about-1.jpg', 'hamzajunaid69@gmail.com'),
+(2, 'Plot', 'Gulshan-e-Iqbal', 'Plot for sale in block 12, Gulshan-e-Iqbal', 160, 'Plot Available For Sale Vip Block West Open,\r\nPrime Location Secure Investment,\r\nOpen Plot Block 12 (160 Square Yard)\r\nPrice View Contact Detail Gulshan-e-Iqbal\r\nGulshan-e-Iqbal Sale Purchase & Advice', 5500000, NULL, NULL, NULL, 'C:\\Users\\Mohsin\\Downloads\\real-estate-46f9b2e9a06119f0cfeeaa04899999f01fb34f11\\public\\assets\\img\\about-2.jpg', 'mohsiniqbal2000@yahoo.com');
 
 -- --------------------------------------------------------
 
@@ -132,8 +132,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`Id`, `firstname`, `lastname`, `password`, `contact`) VALUES
 ('hamzajunaid69@gmail.com', 'Hamza', 'Junaid', '*41327C9383345753903', '03332562566'),
-('mehdizafar@gmail.com', 'Mehdi', 'Zafar', '*
-1EA8CA9AA6141943761', '03332000021'),
+('mehdizafar@gmail.com', 'Mehdi', 'Zafar', '*1EA8CA9AA6141943761', '03332000021'),
 ('mohsiniqbal2000@yahoo.com', 'Mohsin', 'Iqbal', '*FE1F1252156CF66C5C2', '03332000021'),
 ('zakawatabbas@gmail.com', 'Zakawat ', 'Abbas', '*9DEDC2A3AF68549213D', '03002905653');
 

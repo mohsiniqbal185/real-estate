@@ -1,23 +1,71 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {request, POST, StatusOK} from "./request_helper";
+
 
 const SignIn = () => {
-    return ( 
-        <div className='container_SignIn'>
-        <form/>
-            <h2 className="Heading"><strong>Welcome to Log In</strong></h2>
-            <br/><br />
+    const [message, setMessage] = useState("");
+    const params = new URLSearchParams(window.location.search);
+    const redirect = params.get('redirect');
+    const handleSubmit = async e => {
+        e.preventDefault();
 
-        <center><li><input type="email" placeholder="Enter your email" required/></li></center>
-        <br/><br />
-        <center><li><input type="password" placeholder="Enter your password" required/></li></center>
-        <br/><br/>
-        <center><button className='logIn' type='submit'>Sign In</button></center>
-        
-        <h4>Don't have an account? <a href="">Sign Up</a></h4>
-        
-    <form/>
-    </div>
-     );
+        const data = new FormData(e.target);
+        let username = data.get("username");
+        let password = data.get("password");
+
+        const response = await request(POST, "/login", {
+            "username": username,
+            "password": password
+        });
+        console.log(response);
+        if (response.status === StatusOK) {
+            localStorage.setItem('user', JSON.stringify(username));
+            if (!redirect) {
+                window.location.href = "/home";
+            } else {
+                window.location.href = redirect;
+            }
+            setMessage("");
+            console.log("Successfully logged in");
+        } else {
+            let json = await response.json()
+            console.log(json)
+            setMessage(json.error);
+        }
+    }
+
+    return (
+        <div className='container_SignIn'>
+            <form onSubmit={handleSubmit}>
+                <h2 className="Heading"><strong>Welcome to Log In</strong></h2>
+
+                <center>
+                    <li><input type="email" name="username" placeholder=" Enter your email" required
+                    />
+                        <br/>
+                    </li>
+                </center>
+                <center>
+                    <li><input type="password" name="password" placeholder=" Enter your password" required/>
+                    </li>
+                    <br/>
+                </center>
+                <center>
+                    <button className='logIn' type='submit'>Sign In</button>
+                </center>
+
+            </form>
+
+            <center>
+                <div className="error-message"
+                     style={message === "" ? {display: "none"} : {}}>{message}
+                </div>
+            </center>
+
+            <h4>Don't have an account? <a href="/signup">Sign Up</a></h4>
+
+        </div>
+    );
 }
- 
+
 export default SignIn;
